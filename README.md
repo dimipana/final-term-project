@@ -3,7 +3,7 @@ A multimodal driven RC car which is also capable of extracting a 2D plain from a
 
 
 ## The 2d plain-3d algorithm file includes a subproject which proceded the main one. 
-### In this subproject, we implemented the basic movement of the robot using only voice commands or hardcoded movements. Our aim was to check whether we could extract depth maps from a single stereo camera. After this attempt fell short cause of the very low point of view the robot had, we converted our interest into making a 2D plain of the room after taking a number of photos.
+In this subproject, we implemented the basic movement of the robot using only voice commands or hardcoded movements. Our aim was to check whether we could extract depth maps from a single stereo camera. After this attempt fell short cause of the very low point of view the robot had, we converted our interest into making a 2D plain of the room after taking a number of photos.
 
 #### It includes:
 1. The code we used for testing a 3D algorithm on the robot's onboard camera, written in python, using the opencv library.
