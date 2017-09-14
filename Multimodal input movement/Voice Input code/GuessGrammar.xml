@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<grammar xml:lang="en-US" version="1.0" root="root"
+	xmlns="http://www.w3.org/2001/06/grammar" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.w3.org/2001/06/grammar http://www.iristk.net/xml/srgs.xsd" tag-format="semantics/1.0">
+
+  <rule id="root" scope="public">
+      <one-of>
+          <item>forward<tag>out.action=1</tag></item>
+          <item>go straight<tag>out.action=1</tag></item>
+             
+          <item>backward<tag>out.action=2</tag></item>
+          <item>go back<tag>out.action=2</tag></item>
+          
+          <item>left<tag>out.action=3</tag></item>
+          <item>turn left<tag>out.action=3</tag></item>
+          <item>go left<tag>out.action=3</tag></item>
+          
+          <item>right<tag>out.action=4</tag></item>
+          <item>turn right<tag>out.action=4</tag></item>
+          <item>go right<tag>out.action=4</tag></item>
+             
+
+          <item>yes<tag>out.yes=1</tag></item>
+          <item>no<tag>out.no=1</tag></item>
+      </one-of>
+  </rule>
+  
+</grammar>

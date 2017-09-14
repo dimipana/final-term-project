@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flow name="GuessFlow" package="iristk.app.guess" 
+	initial="Start"	xmlns="iristk.flow" xmlns:p="iristk.flow.param" xmlns:dialog="iristk.flow.DialogFlow" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="iristk.flow flow.xsd iristk.flow.DialogFlow DialogFlow.xsd">
+	
+	<var name="action" type="Integer"/>
+	<var name="motion" type="Integer"/>
+	
+	<state id="Start">
+		<onentry>
+			
+			<dialog:say>Command the robot to take an action. You can select to move it onwards, backwards, left, or right.</dialog:say>
+			<goto state="Guess"/>
+		</onentry>
+	</state>
+	
+	<state id="Guess" extends="Dialog">
+		<onentry>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:action">
+
+			<if cond="asInteger(event:sem:action) == 1">
+				<dialog:say>You told the robot to move forward.</dialog:say>
+				<exec> motion=1 </exec>
+				<exec> connect(motion)</exec>
+				<reentry/>
+			<elseif cond="asInteger(event:sem:action)==2"/>
+				<dialog:say>You told the robot to move backward.</dialog:say>
+				<exec> motion=2 </exec>
+				<exec> connect(motion)</exec>
+				<reentry/>
+			<elseif cond="asInteger(event:sem:action)==3"/>
+				<dialog:say>You told the robot to turn left.</dialog:say>
+				<exec> motion=3 </exec>
+				<exec> connect(motion)</exec>
+				<reentry/>
+			<elseif cond="asInteger(event:sem:action)==4"/>
+				<dialog:say>You told the robot to turn right.</dialog:say>
+				<exec> motion=4 </exec>
+				<exec> connect(motion)</exec>
+				<reentry/>
+			</if>
+		</onevent>
+	</state>
+	
+	<state id="CheckAgain" extends="Dialog">
+		<onentry>
+			<dialog:say>Do you want to play again?</dialog:say>
+			<dialog:listen/>
+		</onentry>
+		<onevent name="sense.user.speak" cond="event?:sem:yes">
+			<dialog:say>Okay, let's play again.</dialog:say>
+			<goto state="Start"/>
+		</onevent>
+		<onevent name="sense.user.speak" cond="event?:sem:no">
+			<dialog:say>Okay, goodbye</dialog:say>
+			<exec>System.exit(0)</exec>
+		</onevent>		
+	</state>
+	
+	<state id="Dialog">
+		<onevent name="sense.user.silence">
+			<dialog:say>I am sorry, I didn't hear anything.</dialog:say>
+			<reentry/>
+		</onevent>
+		<onevent name="sense.user.speak">
+			<dialog:say>I am sorry, I didn't get that.</dialog:say>
+			<reentry/>
+		</onevent>
+	</state>
+	
+
+</flow>
